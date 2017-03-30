@@ -68,7 +68,7 @@ public class SolrQueryNgramCaptureAverageTime {
             String thirdThree = wholeTerm.substring(10, 13);
 
             //put together Solr Query
-            String solrQuery = "select crid, addr1 from " + m_keyspaceName + ".y where solr_query = '{ \"q\":\"crid:*.*\", \"fq\":[ \"{!cached=false cost=1}crid_ngram: " + firstFive + "\", \"{!cached=false cost=1}crid_ngram: " + secondFive + "\", \"{!cached=false cost=1}crid_ngram: " + thirdThree + "\", \"{!cached=false cost=101}crid: " + shortenedTerm + "*\" ] }' LIMIT 1;";
+            String solrQuery = "select crid, addr1 from " + m_keyspaceName + ".y where solr_query = '{ \"q\":\"*:*\", \"fq\":[ \"{!cached=false cost=1}crid_ngram: " + firstFive + "\", \"{!cached=false cost=1}crid_ngram: " + secondFive + "\", \"{!cached=false cost=1}crid_ngram: " + thirdThree + "\", \"{!cached=false cost=101}crid: " + shortenedTerm + "*\" ] }' LIMIT 1;";
             System.out.println(solrQuery);
 
             //run query
