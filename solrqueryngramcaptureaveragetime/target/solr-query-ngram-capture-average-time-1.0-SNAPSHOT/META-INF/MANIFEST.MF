@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: jimhatcher
+Class-Path: lib/cassandra-driver-core-3.2.0.jar lib/netty-handler-4.0.
+ 44.Final.jar lib/netty-buffer-4.0.44.Final.jar lib/netty-common-4.0.4
+ 4.Final.jar lib/netty-transport-4.0.44.Final.jar lib/netty-codec-4.0.
+ 44.Final.jar lib/guava-19.0.jar lib/metrics-core-3.1.2.jar lib/slf4j-
+ api-1.7.7.jar lib/jnr-ffi-2.0.7.jar lib/jffi-1.2.10.jar lib/jffi-1.2.
+ 10-native.jar lib/asm-5.0.3.jar lib/asm-commons-5.0.3.jar lib/asm-ana
+ lysis-5.0.3.jar lib/asm-tree-5.0.3.jar lib/asm-util-5.0.3.jar lib/jnr
+ -x86asm-1.0.2.jar lib/jnr-posix-3.0.27.jar lib/jnr-constants-0.9.0.ja
+ r
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_112
+Main-Class: com.fedextesting.SolrQueryNGramCaptureAverageTime
+
