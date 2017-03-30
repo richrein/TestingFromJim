@@ -17,13 +17,14 @@ public class SolrQueryNgramCaptureAverageTime {
 
     public static void main(String[] args){
 
-//        if (args.length != 2){
-//            System.out.println("You must pass in the following arguments to this program");
-//            return;
-//        }
-
-        m_clusterAddress = args[0];
-        m_keyspaceName = args[1];
+        if (args.length != 2){
+            System.out.println("You must pass in the following arguments to this program: cluster_address keyspace_name");
+            System.out.println("For example: 54.201.21.89 x");
+            return;
+        } else {
+            m_clusterAddress = args[0];
+            m_keyspaceName = args[1];
+        }
 
         //set default values if not passed in as arguments
         if (m_clusterAddress == "") {
@@ -92,7 +93,8 @@ public class SolrQueryNgramCaptureAverageTime {
         System.out.println("Average Query Time: " + Double.toString(averageTiming) + " millisecond(s)");
         System.out.println("Max Query Time: " + Double.toString(maxMillis) + " millisecond(s)");
 
-        return;
+        //make sure the program exits
+        System.exit(0);
 
     }
 
