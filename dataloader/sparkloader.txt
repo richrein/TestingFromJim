@@ -1,0 +1,45 @@
+// Random generator
+val random = new scala.util.Random
+
+// Generate a random string of length n from the given alphabet
+def randomString(alphabet: String)(n: Int): String = Stream.continually(random.nextInt(alphabet.size)).map(alphabet).take(n).mkString
+
+// Generate a random alphanumeric string of length n
+def randomAlphanumericString(n: Int) = randomString("abcdefghijklmnopqrstuvwxyz0123456789")(n)
+def randomAlphaStringUpperCase(n: Int) = randomString("ABCDEFGHIJKLMNOPQRSTUVWXYZ")(n)
+
+def randomIntString(n: Int) = randomString("0123456789")(n)
+def randomDecimalString(beforeDecimalPoint: Int, afterDecimalPoint: Int) = randomString("0123456789")(beforeDecimalPoint) + "." + randomString("0123456789")(afterDecimalPoint)
+
+def randomInt = random.nextInt(2000000000) //2 billion
+def randomDouble = random.nextDouble() * 1000000 //1 million
+
+//control the amount of data you want (i.e., outerloop * 10,000 = number of records generated)
+for (outerLoop <- 1 to 1000) {
+
+  //don't get too big here -- so we don't OOM or throw GC errors
+  val seq = for( x <- 1 to 10000 ) yield {
+
+    val firstDigitsOfId = "00000" + randomIntString(5)
+    val secondDigitsOfId = "00000" + randomIntString(5)
+
+    val middleCounter = "00000" + x.toString
+
+    val id = firstDigitsOfId.substring(firstDigitsOfId.length - 5) + middleCounter.substring(middleCounter.length - 5) + secondDigitsOfId.substring(secondDigitsOfId.length - 5)
+
+    val streetNumber = randomIntString(3)
+    val streetName = randomAlphaStringUpperCase(15)
+    val streetSuffix = randomAlphaStringUpperCase(2)
+
+    val addr = streetNumber + " " + streetName + " " + streetSuffix
+    ( id, addr )
+  }
+
+  //get an add
+  var rdd = sc.parallelize(seq)
+
+  //write to cassandra
+  rdd.saveToCassandra("x", "y", SomeColumns("crid", "addr1"))
+
+}
+
