@@ -9,9 +9,8 @@ public class TimingResult {
 
     }
 
-    public TimingResult(String wholeTerm, String shortenedTerm, long milliseconds) {
+    public TimingResult(String wholeTerm, long milliseconds) {
         _wholeTerm = wholeTerm;
-        _shortenedTerm = shortenedTerm;
         _milliseconds = milliseconds;
     }
 
